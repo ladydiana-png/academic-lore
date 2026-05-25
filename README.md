@@ -11,7 +11,6 @@ Repository ini dibuat untuk memenuhi Tugas 2 mata kuliah Pendidikan Pancasila pa
 Untuk melihat hasil analisis perbandingan dalam bentuk tampilan web (UI) interaktif yang rapi dan presisi, silakan klik tautan resmi di bawah ini:
 
 👉 **[KLIK DI SINI UNTUK MELIHAT TUGAS](https://ladydiana-png.github.io/academic-lore/)**
-*(Catatan: Ganti URL di atas dengan tautan GitHub Pages Anda yang asli)*
 
 ## 📝 Deskripsi Tugas
 Tugas ini berisi analisis komparatif terstruktur mengenai tiga peranan fundamental Pancasila, yaitu:
