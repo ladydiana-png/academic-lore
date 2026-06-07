@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central Mind Map - Bahasa Inggris Bisnis</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: #faf6ff;
+            color: #3a225d;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 32px;
+            box-shadow: 0 20px 50px rgba(156, 39, 176, 0.05);
+            border: 1px solid #f3e5f5;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 28px;
+            color: #4a148c;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+        }
+
+        header p {
+            color: #8e24aa;
+            font-size: 14px;
+            font-style: italic;
+        }
+
+        .edit-badge {
+            text-align: center;
+            background: #f3e5f5;
+            color: #7b1fa2;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 12px;
+            display: inline-block;
+            margin-bottom: 40px;
+            font-weight: 500;
+        }
+
+        /* SUSUNAN UTAMA MIND MAP - PASTI CENTER & SIMETRIS */
+        .mindmap-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+            width: 100%;
+        }
+
+        .side-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* CENTER ROOT NODE */
+        .center-root {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 0 20px;
+        }
+
+        .root-node {
+            background: linear-gradient(135deg, #e1bee7 0%, #d1c4e9 100%);
+            color: #4a148c;
+            padding: 25px;
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            font-size: 15px;
+            font-weight: 700;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 12px 30px rgba(156, 39, 176, 0.2);
+            border: 4px solid #ffffff;
+            outline: none;
+            z-index: 5;
+        }
+
+        .root-node i {
+            font-size: 32px;
+            margin-bottom: 12px;
+            color: #6a1b9a;
+        }
+
+        /* MODUL CARDS (BRANCHES) */
+        .modul-card {
+            background: #ffffff;
+            border: 1px solid #f1e6f9;
+            border-bottom: 4px solid #ba68c8;
+            padding: 16px;
+            border-radius: 18px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.02);
+            transition: all 0.3s ease;
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+            outline: none;
+            position: relative;
+        }
+
+        .modul-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(186, 104, 200, 0.15);
+            background: #fdfaff;
+        }
+
+        /* GARIS PENGHUBUNG AKURAT MENGGUNAKAN PSEUDO-ELEMENT */
+        .side-column.left .modul-card::after {
+            content: "";
+            position: absolute;
+            right: -42px;
+            top: 50%;
+            width: 42px;
+            height: 2px;
+            border-top: 2px dashed #d1c4e9;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .side-column.right .modul-card::after {
+            content: "";
+            position: absolute;
+            left: -42px;
+            top: 50%;
+            width: 42px;
+            height: 2px;
+            border-top: 2px dashed #d1c4e9;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Feminine Icons */
+        .icon-box {
+            background: #f3e5f5;
+            color: #8e24aa;
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .card-content {
+            flex-grow: 1;
+        }
+
+        .modul-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #4a148c;
+            margin-bottom: 4px;
+        }
+
+        .modul-desc {
+            font-size: 12px;
+            color: #616161;
+            line-height: 1.5;
+        }
+
+        /* SOAL NO 2 EVALUASI */
+        .qa-section {
+            margin-top: 40px;
+            border-top: 2px dashed #e1bee7;
+            padding-top: 40px;
+        }
+
+        .qa-section h2 {
+            font-size: 20px;
+            color: #4a148c;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .qa-container {
+            display: flex;
+            gap: 25px;
+        }
+
+        .qa-box {
+            flex: 1;
+            padding: 25px;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .qa-box.confident {
+            border: 1px solid #d1c4e9;
+            background-color: #f8f5fd;
+        }
+
+        .qa-box.not-confident {
+            border: 1px solid #f8bbd0;
+            background-color: #fff8fa;
+        }
+
+        .qa-box h3 {
+            font-size: 15px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .confident h3 { color: #4a148c; }
+        .not-confident h3 { color: #c2185b; }
+
+        .qa-box ul {
+            font-size: 13px;
+            color: #555555;
+            line-height: 1.7;
+            padding-left: 20px;
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 950px) {
+            .mindmap-container { flex-direction: column; gap: 30px; }
+            .side-column.left .modul-card::after, .side-column.right .modul-card::after { display: none; }
+            .center-root { order: -1; }
+            .qa-container { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>CONCEPT MAP: BUSINESS ENGLISH</h1>
+            <p>Diskusi 8</p>
+        </header>
+
+        <div style="text-align: center;">
+            <div class="edit-badge">✨ Diana Ananda Putri │ 055209394 │ S1 Akuntansi Universitas Terbuka ✨</div>
+        </div>
+
+        <div class="mindmap-container">
+            
+            <div class="side-column left">
+                <div class="modul-card" contenteditable="true">
+                    <div class="icon-box"><i class="fa-solid fa-comments"></i></div>
+                    <div class="card-content">
+                        <div class="modul-title">Module 1: Formal and Informal English</div>
+                        <div class="modul-desc">The two main ways of communicating in English (spoken and written).</div>
+                    </div>
+                </div>
+
+                <div class="modul-card" contenteditable="true">
+                    <div class="icon-box"><i class="fa-solid fa-briefcase"></i></div>
+                    <div class="card-content">
+                        <div class="modul-title">Module 2: Basic concepts and key terminology learned in the business world</div>
+                        <div class="modul-desc">
+                            <ul style="padding-left: 15px; margin-top: 5px;">
+                                <li>Basic writing</li>
+                                <li>Punctuation</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modul-card" contenteditable="true">
+                    <div class="icon-box"><i class="fa-solid fa-envelope-open-text"></i></div>
+                    <div class="card-content">
+                        <div class="modul-title">Module 3: Informal Emails and Business Memos</div>
+                        <div class="modul-desc">
+                            <ul style="padding-left: 15px; margin-top: 5px;">
+                                <li>Write an informal emails and memos</li>
+                                <li>Analyze the differences between emails and memos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modul-card" contenteditable="true">
+                    <div class="icon-box"><i class="fa-solid fa-pen-fancy"></i></div>
+                    <div class="card-content">
+                        <div class="modul-title">Module 4: Types of Business Letters</div>
+                        <div class="modul-desc">
+                            <ul style="padding-left: 15px; margin-top: 5px;">
+                                <li>Types of business writing</li>
+                                <li>Write a business letters</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modul-card" contenteditable="true">
+                    <div class="icon-box"><i class="fa-solid fa-file-invoice"></i></div>
+                    <div class="card-content">
+                        <div class="modul-title">Module 5: Letter of Request</div>
+                        <div class="modul-desc">
+                            <ul style="padding-left: 15px; margin-top: 5px;">
+                                <li>Types of letters of request</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="center-root">
+                <div class="root-node" contenteditable="true">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <span>BUSINESS ENGLISH</span>
+                    <span style="font-size: 11px; font-weight: normal; margin-top: 5px; opacity: 0.8;">Module 1 - 9</span>
+                </div>
+            </div>
+
+            <div class="side-column right">
+                <div class="modul-card" contenteditable="true">
+                    <div class="icon-box"><i class="fa-solid fa-heart"></i></div>
+                    <div class="card-content">
+                        <div class="modul-title">Module 6: Letter of Appreciation</div>
+                        <div class="modul-desc">How to write letters of appreciation, thank-you notes, and professional recognition.</div>
+                    </div>
+                </div>
+
+                <div class="modul-card" contenteditable="true">
+                    <div class="icon-box"><i class="fa-solid fa-id-card"></i></div>
+                    <div class="card-content">
+                        <div class="modul-title">Module 7: Cover Letter and Resume</div>
+                        <div class="modul-desc">
+                            <ul style="padding-left: 15px; margin-top: 5px;">
+                                <li>Write a job application letter</li>
+                                <li>Identifying the components of a resume (CV)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modul-card" contenteditable="true">
+                    <div class="icon-box"><i class="fa-solid fa-calendar-check"></i></div>
+                    <div class="card-content">
+                        <div class="modul-title">Module 8: Promises & Detailed Explanations</div>
+                        <div class="modul-desc">Strategies for scheduling appointments and detailed business explanations.</div>
+                    </div>
+                </div>
+
+                <div class="modul-card" contenteditable="true">
+                    <div class="icon-box"><i class="fa-solid fa-network-wired"></i></div>
+                    <div class="card-content">
+                        <div class="modul-title">Module 9: Various forms of business communication</div>
+                        <div class="modul-desc">The various forms and channels of modern business communication.</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="qa-section">
+            <h2>Reflection & Self-Confidence Level</h2>
+            <div class="qa-container">
+                
+                <div class="qa-box confident" contenteditable="true">
+                    <h3><i class="fa-solid fa-circle-check"></i> The Area I am Most Confident About</h3>
+                    <ul>
+                        <li><b>Module 3 & 7:</b> The sections on writing informal emails, drafting a resume, and writing a cover letter, as their format is very practical and closely aligned with real-world career preparation.</li>
+                        <li><b>Module 6:</b> The Letter of Appreciation. It is written in a way that uses positive language and sentences that are easy to understand.</li>
+                    </ul>
+                </div>
+
+                <div class="qa-box not-confident" contenteditable="true">
+                    <h3><i class="fa-solid fa-circle-exclamation"></i> Areas I Have not Mastered Yet (Not Confident)</h3>
+                    <ul>
+                        <li><b>Module 4 & 5:</b>The art of formal correspondence and the Letter of Request, as they require the use of standard business vocabulary and highly formal grammar.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
